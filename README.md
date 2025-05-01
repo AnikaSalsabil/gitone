@@ -264,14 +264,13 @@ git merge development -m "Merging on main with development"
 
  
 # Work Inside Remote
+## Push method
 At this moment, we want to transfer the changes from the stage (local repository) to the remote (GitHub). This process is called "Push".
 1. Go to Git Bash and run the following command:
 ```bash
 git push origin main    # it will push the changes of the main branch to the Remote (GitHub)
-git checkout staging
-git push origin staging   # it will create the staging branch in the remote firstly (as there's no other branch except main in the remote) and then push changes accordingly
 git checkout development
-git push origin development   # it will create the development branch in the remote firstly and then push changes accordingly
+git push origin development   # it will create the development branch in the remote firstly (as there's no other branch except main in the remote) and then push changes accordingly
 ```
 2. If there's any conflict that prevents pushing the respective changes to remote, we can resolve it in two ways:
 - Option-1:
@@ -283,6 +282,39 @@ git push origin main    #Now your branch is up-to-date, so push works.
 ```base
 git push origin main --force    # If you're 100% sure your local version is correct and want to overwrite the remote forcefully 
 ```
-3. 
-4. 
+3. This is how, we can push changes from local repository to remote (github)
 
+## Fetch method
+1. Go to remote (GitHub) and change something inside the two.txt from main branch and commit changes. The following is the updated content of two.txt from remote:
+```bash
+two 2 combining both dev and main
+- changing from remote
+```
+2. Now, go to Git Bash and run the following:
+```bash
+git checkout main
+git fetch     # it will fetch the changes from origin (remote) to the main branch
+git status
+```
+3. At this moment, if you go to the two.txt file from file explorer (main branch), the content is displayed like the following:
+```bash
+two 2 combining both dev and main
+```
+4. This means that the changes from remote are not reflected inside the file itself. To do that, run the following from Git bash:
+```bash
+git merge    
+```
+5. Now check the two.txt file again from file explorer. Now the content reflects the same as the origin.
+
+## Pull method
+1. Go to remote (GitHub) and change something inside the three.txt (previous content was: three- this one line) from main branch and commit changes. The following is the updated content of two.txt from the remote:
+```bash
+three
+- 3 added from remote
+```
+2. Now, go to Git Bash and run the following:
+```bash
+git pull    
+```
+3. At this moment, if you go to the three.txt file from file explorer (main branch), the content is displayed like the same as step-1.
+4. That means, we didnt need to fetch and merge the respective change from  remote to the local repository. The command "git pull" does both in one single step. 
