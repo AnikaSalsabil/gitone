@@ -264,10 +264,25 @@ git merge development -m "Merging on main with development"
 
  
 # Work Inside Remote
-At this moment, we want to transfer the changes of stage (local repository) to remote (GitHub). This process is called "Push".
+At this moment, we want to transfer the changes from the stage (local repository) to the remote (GitHub). This process is called "Push".
 1. Go to Git Bash and run the following command:
 ```bash
-git push origin main    # it will push the changes of main branch to Remote (gitHub)
+git push origin main    # it will push the changes of the main branch to the Remote (GitHub)
+git checkout staging
+git push origin staging   # it will create the staging branch in the remote firstly (as there's no other branch except main in the remote) and then push changes accordingly
+git checkout development
+git push origin development   # it will create the development branch in the remote firstly and then push changes accordingly
 ```
-2. 
+2. If there's any conflict that prevents pushing the respective changes to remote, we can resolve it in two ways:
+- Option-1:
+```base
+git pull origin main --rebase   #Brings remote changes into your local branch without a messy merge commit.
+git push origin main    #Now your branch is up-to-date, so push works.
+```
+- Option-2:
+```base
+git push origin main --force    # If you're 100% sure your local version is correct and want to overwrite the remote forcefully 
+```
+3. 
+4. 
 
